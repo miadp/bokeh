@@ -26,12 +26,15 @@ from ..core.enums import Location, OutputBackend, ResetPolicy
 from ..core.properties import (
     Bool,
     Dict,
+    Either,
     Enum,
     Float,
     Include,
     Instance,
     Int,
     List,
+    Null,
+    Nullable,
     Override,
     String,
 )
@@ -445,11 +448,11 @@ class Plot(LayoutDOM):
     Whether to use HiDPI mode when available.
     """)
 
-    title = Instance(Title, default=lambda: Title(text=""), help="""
+    title = Either(Null, String, Instance(Title), default=lambda: Title(text=""), help="""
     A title for the plot. Can be a text string or a Title annotation.
     """)
 
-    title_location = Enum(Location, default="above", help="""
+    title_location = Nullable(Enum(Location), default="above", help="""
     Where the title will be located. Titles on the left or right side
     will be rotated.
     """)
@@ -474,7 +477,7 @@ class Plot(LayoutDOM):
     automatically created with the plot if necessary.
     """)
 
-    toolbar_location = Enum(Location, default="right", help="""
+    toolbar_location = Nullable(Enum(Location), default="right", help="""
     Where the toolbar will be located. If set to None, no toolbar
     will be attached to the plot.
     """)
@@ -524,12 +527,12 @@ class Plot(LayoutDOM):
 
     """)
 
-    frame_width = Int(default=None, help="""
+    frame_width = Nullable(Int, help="""
     The width of a plot frame or the inner width of a plot, excluding any
     axes, titles, border padding, etc.
     """)
 
-    frame_height = Int(default=None, help="""
+    frame_height = Nullable(Int, help="""
     The height of a plot frame or the inner height of a plot, excluding any
     axes, titles, border padding, etc.
     """)
@@ -591,7 +594,7 @@ class Plot(LayoutDOM):
 
     border_fill_color = Override(default='#ffffff')
 
-    min_border_top = Int(help="""
+    min_border_top = Nullable(Int, help="""
     Minimum size in pixels of the padding region above the top of the
     central plot region.
 
@@ -601,7 +604,7 @@ class Plot(LayoutDOM):
 
     """)
 
-    min_border_bottom = Int(help="""
+    min_border_bottom = Nullable(Int, help="""
     Minimum size in pixels of the padding region below the bottom of
     the central plot region.
 
@@ -611,7 +614,7 @@ class Plot(LayoutDOM):
 
     """)
 
-    min_border_left = Int(help="""
+    min_border_left = Nullable(Int, help="""
     Minimum size in pixels of the padding region to the left of
     the central plot region.
 
@@ -621,7 +624,7 @@ class Plot(LayoutDOM):
 
     """)
 
-    min_border_right = Int(help="""
+    min_border_right = Nullable(Int, help="""
     Minimum size in pixels of the padding region to the right of
     the central plot region.
 
@@ -631,7 +634,7 @@ class Plot(LayoutDOM):
 
     """)
 
-    min_border = Int(5, help="""
+    min_border = Nullable(Int(5), help="""
     A convenience property to set all all the ``min_border_X`` properties
     to the same value. If an individual border property is explicitly set,
     it will override ``min_border``.
