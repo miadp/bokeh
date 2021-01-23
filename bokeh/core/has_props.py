@@ -35,7 +35,7 @@ from ..util.string import nice_join
 from .property.descriptor_factory import PropertyDescriptorFactory
 from .property.descriptors import UnsetValueError
 from .property.override import Override
-from .property.undefined import Undefined
+from .property.singletons import Undefined
 from .property.wrappers import PropertyValueContainer
 
 #-----------------------------------------------------------------------------
