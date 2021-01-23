@@ -208,6 +208,7 @@ __all__ = (
     'Either',
     'Enum',
     'Factor',
+    'FactorSeq',
     'Float',
     'FontSize',
     'FontSizeSpec',
@@ -313,6 +314,9 @@ from .property.either import Either; Either
 
 from .property.enum import Enum; Enum
 
+from .property.factors import Factor; Factor
+from .property.factors import FactorSeq; FactorSeq
+
 from .property.include import Include ; Include
 
 from .property.instance import Instance; Instance
@@ -356,8 +360,6 @@ from .property.visual import MarkerType; MarkerType
 
 from .property.validation import validate; validate
 from .property.validation import without_property_validation; without_property_validation
-
-Factor = Either(String, Tuple(String, String), Tuple(String, String, String))
 
 #-----------------------------------------------------------------------------
 # Dev API
